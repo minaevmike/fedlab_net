@@ -11,6 +11,8 @@
 
 #define PORT 110
 #define SERVER "pop.qip.ru"
+#define USER "minaev.mike@qip.ru"
+#define PASS "mike1992"
 
 int get_ip_by_hostname(char *ip) {
 	struct hostent *he;
@@ -37,6 +39,7 @@ int main(int argc, char **argv) {
 	int sockfd = 0;
 	char buf[1024];
 	char ip[32];
+    int n;
 	if (get_ip_by_hostname(ip) != 0) {
 		perror("Error by getting ip");
 		return -1;
@@ -56,5 +59,17 @@ int main(int argc, char **argv) {
 		perror("Connect error");
 		return -1;
 	}
+    //wrte(sockfd, "\n", 1);
+    write(sockfd, "USER ", 5);
+    write(sockfd, USER, strlen(USER));
+    write(sockfd, "\n", 1);
+    int state = 0;
+    while ((n = read(sockfd, buf, sizeof(buf))) > 0) {
+        if (!strncmp(buf, "OK", sizeof(buf)))
+                state++;
+
+        printf("%s!!\n",buf;
+    }
+    close(sockfd);
 }
 
