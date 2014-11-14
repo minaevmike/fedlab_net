@@ -11,8 +11,8 @@
 
 #define PORT 110
 #define SERVER "pop.qip.ru"
-#define USER "minaev.mike@qip.ru"
-#define PASS "mike1992"
+#define USER ""
+#define PASS ""
 
 int get_ip_by_hostname(char *ip) {
 	struct hostent *he;
